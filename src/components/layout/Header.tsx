@@ -1,4 +1,3 @@
-
 import { Bell } from "lucide-react";
 import {
   Popover,
@@ -12,7 +11,7 @@ export const Header = () => {
   return (
     <header className="w-full px-6 py-4 glass-panel">
       <div className="flex justify-between items-center">
-        <div className="text-lg font-medium">Фінтех Адмін</div>
+        <div className="text-lg font-medium">Бугалтерія онлайн</div>
         <div className="flex items-center gap-4">
           <Popover>
             <PopoverTrigger asChild>
