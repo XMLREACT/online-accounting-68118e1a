@@ -1,105 +1,83 @@
 
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { DashboardLayout } from "@/components/layout/DashboardLayout";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const Index = () => {
-  return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
-      <header className="border-b bg-white py-4">
-        <div className="container flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Особистий кабінет</h1>
-          <nav>
-            <Link to="/auth">
-              <Button>Увійти / Зареєструватися</Button>
-            </Link>
-          </nav>
-        </div>
-      </header>
+  const userData = {
+    name: "Іван Петрович Сидоренко",
+    contractStatus: "Активний",
+    nextPayment: "2024-03-15",
+    documents: [
+      { name: "Паспорт", status: "Перевірено" },
+      { name: "ІПН", status: "Перевірено" },
+      { name: "Договір №123", status: "Очікує підпису" },
+    ],
+  };
 
-      <main className="flex-1 container py-8">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <Link to="/profile">
-            <Card className="h-full hover:shadow-md transition-shadow">
-              <CardHeader>
-                <CardTitle>Профіль</CardTitle>
-                <CardDescription>Перегляд та редагування особистих даних</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>Керуйте особистою інформацією та налаштуваннями</p>
-              </CardContent>
-            </Card>
-          </Link>
-          
-          <Link to="/statement">
-            <Card className="h-full hover:shadow-md transition-shadow">
-              <CardHeader>
-                <CardTitle>Виписки</CardTitle>
-                <CardDescription>Банківські виписки та операції</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>Перегляд історії транзакцій та балансу рахунків</p>
-              </CardContent>
-            </Card>
-          </Link>
-          
-          <Link to="/documents">
-            <Card className="h-full hover:shadow-md transition-shadow">
-              <CardHeader>
-                <CardTitle>Документи</CardTitle>
-                <CardDescription>Завантаження та перегляд документів</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>Керуйте документами та завантажуйте нові файли</p>
-              </CardContent>
-            </Card>
-          </Link>
-          
-          <Link to="/contract">
-            <Card className="h-full hover:shadow-md transition-shadow">
-              <CardHeader>
-                <CardTitle>Договори</CardTitle>
-                <CardDescription>Перегляд та управління договорами</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>Доступ до всіх ваших договорів та угод</p>
-              </CardContent>
-            </Card>
-          </Link>
-          
-          <Link to="/history">
-            <Card className="h-full hover:shadow-md transition-shadow">
-              <CardHeader>
-                <CardTitle>Історія</CardTitle>
-                <CardDescription>Історія операцій та активності</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>Перегляд історії дій та операцій у вашому кабінеті</p>
-              </CardContent>
-            </Card>
-          </Link>
-          
-          <Link to="/messages">
-            <Card className="h-full hover:shadow-md transition-shadow">
-              <CardHeader>
-                <CardTitle>Повідомлення</CardTitle>
-                <CardDescription>Центр повідомлень та сповіщень</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>Перегляд важливих повідомлень та сповіщень</p>
-              </CardContent>
-            </Card>
-          </Link>
+  return (
+    <DashboardLayout>
+      <div className="space-y-6 animate-fade-in">
+        <h1 className="text-2xl font-semibold">Особистий кабінет</h1>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Card className="glass-panel hover-effect">
+            <CardHeader>
+              <CardTitle>Персональні дані</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-lg font-medium">{userData.name}</p>
+            </CardContent>
+          </Card>
+
+          <Card className="glass-panel hover-effect">
+            <CardHeader>
+              <CardTitle>Статус договору</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                {userData.contractStatus}
+              </span>
+            </CardContent>
+          </Card>
+
+          <Card className="glass-panel hover-effect">
+            <CardHeader>
+              <CardTitle>Наступна оплата</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-lg font-medium">{userData.nextPayment}</p>
+            </CardContent>
+          </Card>
         </div>
-      </main>
-      
-      <footer className="bg-gray-100 py-6 border-t">
-        <div className="container text-center text-gray-600">
-          <p>© 2023 Особистий кабінет. Усі права захищено.</p>
-        </div>
-      </footer>
-    </div>
+
+        <Card className="glass-panel hover-effect">
+          <CardHeader>
+            <CardTitle>Документи</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="divide-y">
+              {userData.documents.map((doc, index) => (
+                <div
+                  key={index}
+                  className="py-3 flex items-center justify-between"
+                >
+                  <span>{doc.name}</span>
+                  <span
+                    className={`px-2.5 py-0.5 rounded-full text-sm font-medium ${
+                      doc.status === "Перевірено"
+                        ? "bg-green-100 text-green-800"
+                        : "bg-yellow-100 text-yellow-800"
+                    }`}
+                  >
+                    {doc.status}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </DashboardLayout>
   );
 };
 
