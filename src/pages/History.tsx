@@ -7,7 +7,8 @@ const History = () => {
   return (
     <DashboardLayout>
       <div className="space-y-6">
-        <h1 className="text-2xl font-bold">Історія активності</h1>
+        <h1 className="text-2xl font-bold">Історія операцій</h1>
+        <p className="text-gray-500">Перегляд всіх ваших операцій у системі</p>
         <ActivityHistory />
       </div>
     </DashboardLayout>
