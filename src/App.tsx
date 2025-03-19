@@ -11,6 +11,7 @@ import Documents from "./pages/Documents";
 import Profile from "./pages/Profile";
 import Contract from "./pages/Contract";
 import History from "./pages/History";
+import Messages from "./pages/Messages";
 
 const queryClient = new QueryClient();
 
@@ -22,7 +23,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/messages" element={<Navigate to="/" replace />} />
+          <Route path="/messages" element={<Messages />} />
           <Route path="/statement" element={<BankStatement />} />
           <Route path="/documents" element={<Documents />} />
           <Route path="/contract" element={<Contract />} />
