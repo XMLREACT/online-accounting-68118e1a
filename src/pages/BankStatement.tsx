@@ -1,6 +1,6 @@
+
 import React, { useState } from 'react';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
-import { AccountSummary } from '@/components/bank-statement/AccountSummary';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
@@ -75,7 +75,6 @@ const BankStatement = () => {
     <DashboardLayout>
       <div className="space-y-6">
         <h1 className="text-2xl font-bold">Банківська виписка</h1>
-        <AccountSummary />
         
         <Card className="shadow-sm">
           <CardHeader>
