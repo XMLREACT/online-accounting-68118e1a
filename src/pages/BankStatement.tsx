@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { AccountSummary } from '@/components/bank-statement/AccountSummary';
@@ -8,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { FileUpload, Download, File } from 'lucide-react';
+import { Upload, Download, File } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 
 const BankStatement = () => {
@@ -25,7 +24,6 @@ const BankStatement = () => {
     const previousYear = currentYear - 1;
     const options = [];
     
-    // Previous year - all quarters
     for (let quarter = 1; quarter <= 4; quarter++) {
       options.push({ 
         value: `${quarter}_quarter_${previousYear}`, 
@@ -33,7 +31,6 @@ const BankStatement = () => {
       });
     }
     
-    // Previous year - all months
     const monthNames = [
       'січень', 'лютий', 'березень', 'квітень', 'травень', 'червень',
       'липень', 'серпень', 'вересень', 'жовтень', 'листопад', 'грудень'
@@ -46,7 +43,6 @@ const BankStatement = () => {
       });
     }
     
-    // Current year - completed quarters only
     for (let quarter = 1; quarter < currentQuarter; quarter++) {
       options.push({ 
         value: `${quarter}_quarter_${currentYear}`, 
@@ -72,7 +68,6 @@ const BankStatement = () => {
   
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic
     console.log('Form submitted with files:', selectedFiles);
   };
   
@@ -110,7 +105,7 @@ const BankStatement = () => {
               <div className="space-y-2">
                 <Label>Завантаження файлів</Label>
                 <div className="border-2 border-dashed rounded-md p-6 text-center border-gray-300 hover:border-primary">
-                  <FileUpload className="mx-auto h-12 w-12 text-gray-400" />
+                  <Upload className="mx-auto h-12 w-12 text-gray-400" />
                   <div className="mt-4">
                     <label htmlFor="file-upload" className="relative cursor-pointer rounded-md font-medium text-primary hover:text-primary/80">
                       <span>Натисніть для завантаження</span>
