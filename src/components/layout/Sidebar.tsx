@@ -9,7 +9,7 @@ import {
   History, 
   User, 
   LogOut, 
-  LogIn,
+  KeyRound,
   UserPlus
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -22,69 +22,73 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="fixed left-0 top-0 bottom-0 w-64 bg-white border-r border-gray-200 p-4 flex flex-col">
-      <div className="text-xl font-bold mb-8 text-primary">
+    <div className="h-screen w-64 fixed left-0 top-0 z-30 bg-white border-r border-gray-200 flex flex-col shadow-sm">
+      <div className="text-xl font-bold px-4 py-6 text-primary border-b border-gray-100">
         Фінтех Адмін Хаб
       </div>
       
-      <nav className="flex-1 space-y-1">
-        <SidebarLink 
-          to="/" 
-          icon={<HomeIcon className="w-5 h-5" />} 
-          label="Головна" 
-          isActive={isActive('/')} 
-        />
-        <SidebarLink 
-          to="/messages" 
-          icon={<MessageSquareText className="w-5 h-5" />} 
-          label="Повідомлення" 
-          isActive={isActive('/messages')} 
-        />
-        <SidebarLink 
-          to="/statement" 
-          icon={<FileText className="w-5 h-5" />} 
-          label="Виписка" 
-          isActive={isActive('/statement')} 
-        />
-        <SidebarLink 
-          to="/documents" 
-          icon={<FileText className="w-5 h-5" />} 
-          label="Документи" 
-          isActive={isActive('/documents')} 
-        />
-        <SidebarLink 
-          to="/contract" 
-          icon={<FileCheck className="w-5 h-5" />} 
-          label="Договір" 
-          isActive={isActive('/contract')} 
-        />
-        <SidebarLink 
-          to="/profile" 
-          icon={<User className="w-5 h-5" />} 
-          label="Профіль" 
-          isActive={isActive('/profile')} 
-        />
-        <SidebarLink 
-          to="/history" 
-          icon={<History className="w-5 h-5" />} 
-          label="Історія" 
-          isActive={isActive('/history')} 
-        />
+      <nav className="flex-1 overflow-y-auto py-4 px-3">
+        <div className="space-y-1">
+          <SidebarLink 
+            to="/" 
+            icon={<HomeIcon className="w-5 h-5" />} 
+            label="Головна" 
+            isActive={isActive('/')} 
+          />
+          <SidebarLink 
+            to="/messages" 
+            icon={<MessageSquareText className="w-5 h-5" />} 
+            label="Повідомлення" 
+            isActive={isActive('/messages')} 
+          />
+          <SidebarLink 
+            to="/statement" 
+            icon={<FileText className="w-5 h-5" />} 
+            label="Виписка" 
+            isActive={isActive('/statement')} 
+          />
+          <SidebarLink 
+            to="/documents" 
+            icon={<FileText className="w-5 h-5" />} 
+            label="Документи" 
+            isActive={isActive('/documents')} 
+          />
+          <SidebarLink 
+            to="/contract" 
+            icon={<FileCheck className="w-5 h-5" />} 
+            label="Договір" 
+            isActive={isActive('/contract')} 
+          />
+          <SidebarLink 
+            to="/profile" 
+            icon={<User className="w-5 h-5" />} 
+            label="Профіль" 
+            isActive={isActive('/profile')} 
+          />
+          <SidebarLink 
+            to="/history" 
+            icon={<History className="w-5 h-5" />} 
+            label="Історія" 
+            isActive={isActive('/history')} 
+          />
+        </div>
       </nav>
       
-      <div className="pt-4 border-t border-gray-200 space-y-2">
+      <div className="p-4 border-t border-gray-200">
         <SidebarLink 
           to="#" 
           icon={<LogOut className="w-5 h-5" />} 
           label="Вийти" 
           isActive={false} 
         />
-        <div className="flex space-x-4 mt-2 px-3 py-2">
-          <Link to="/login" className="text-gray-600 hover:text-primary transition-colors">
-            <LogIn className="w-5 h-5" />
+        <div className="flex space-x-6 mt-4 justify-center">
+          <Link to="/login" className="flex flex-col items-center text-gray-600 hover:text-primary transition-colors">
+            <KeyRound className="w-5 h-5" />
+            <span className="text-xs mt-1">Вхід</span>
           </Link>
-          <Link to="/register" className="text-gray-600 hover:text-primary transition-colors">
+          <Link to="/register" className="flex flex-col items-center text-gray-600 hover:text-primary transition-colors">
             <UserPlus className="w-5 h-5" />
+            <span className="text-xs mt-1">Реєстрація</span>
           </Link>
         </div>
       </div>
