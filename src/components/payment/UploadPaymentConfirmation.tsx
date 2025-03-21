@@ -39,28 +39,41 @@ export const UploadPaymentConfirmation = ({ type, onClose }: UploadPaymentConfir
   };
 
   return (
-    <div className="space-y-4">
-      <div className="space-y-2">
+    <div className="space-y-6 py-4">
+      <div className="space-y-4">
         <p className="text-sm text-gray-500">
           Завантажте підтвердження оплати {type === "єсв" ? "Єдиного соціального внеску" : "Єдиного податку"}
         </p>
         
-        <Input
-          type="file"
-          onChange={handleFileChange}
-          className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
-          accept=".pdf,.jpg,.jpeg,.png"
-          disabled={uploading || uploaded}
-        />
-        
-        <p className="text-xs text-gray-400">
-          Підтримувані формати: PDF, JPG, PNG
-        </p>
+        <div className="bg-gray-50 p-5 rounded-md">
+          <Input
+            type="file"
+            onChange={handleFileChange}
+            className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 mb-3"
+            accept=".pdf,.jpg,.jpeg,.png"
+            disabled={uploading || uploaded}
+          />
+          
+          <p className="text-xs text-gray-400 mt-2">
+            Підтримувані формати: PDF, JPG, PNG
+          </p>
+          
+          <div className="text-sm text-gray-600 bg-blue-50 p-3 rounded-md mt-4">
+            <p>
+              Вам необхідно завантажити документ, що підтверджує оплату 
+              {type === "єсв" ? " єдиного соціального внеску" : " єдиного податку"}.
+            </p>
+            <p className="mt-2">
+              Це може бути скріншот з інтернет-банкінгу, електронна квитанція або сканована копія
+              паперової квитанції з печаткою банку.
+            </p>
+          </div>
+        </div>
       </div>
       
       <DialogFooter>
         {uploaded ? (
-          <div className="flex items-center text-green-600 gap-2">
+          <div className="flex items-center text-green-600 gap-2 px-4 py-2 bg-green-50 rounded-md w-full justify-center">
             <Check className="h-5 w-5" />
             <span>Файл успішно завантажено</span>
           </div>
@@ -69,6 +82,7 @@ export const UploadPaymentConfirmation = ({ type, onClose }: UploadPaymentConfir
             onClick={handleUpload} 
             disabled={!file || uploading}
             className="w-full sm:w-auto"
+            size="lg"
           >
             {uploading ? (
               <span className="flex items-center gap-2">
