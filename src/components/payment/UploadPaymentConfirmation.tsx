@@ -45,20 +45,24 @@ export const UploadPaymentConfirmation = ({ type, onClose }: UploadPaymentConfir
           Завантажте підтвердження оплати {type === "єсв" ? "Єдиного соціального внеску" : "Єдиного податку"}
         </p>
         
-        <div className="bg-gray-50 p-5 rounded-md">
-          <Input
-            type="file"
-            onChange={handleFileChange}
-            className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 mb-3"
-            accept=".pdf,.jpg,.jpeg,.png"
-            disabled={uploading || uploaded}
-          />
+        <div className="bg-gray-50 p-6 rounded-md min-h-[200px] flex flex-col justify-between">
+          <div className="mb-4">
+            <div className="w-full flex flex-col items-center justify-center">
+              <Input
+                type="file"
+                onChange={handleFileChange}
+                className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90 mb-3 w-full h-auto py-3"
+                accept=".pdf,.jpg,.jpeg,.png"
+                disabled={uploading || uploaded}
+              />
+            </div>
+            
+            <p className="text-xs text-gray-400 mt-4 text-center">
+              Підтримувані формати: PDF, JPG, PNG
+            </p>
+          </div>
           
-          <p className="text-xs text-gray-400 mt-2">
-            Підтримувані формати: PDF, JPG, PNG
-          </p>
-          
-          <div className="text-sm text-gray-600 bg-blue-50 p-3 rounded-md mt-4">
+          <div className="text-sm text-gray-600 bg-blue-50 p-4 rounded-md mt-4">
             <p>
               Вам необхідно завантажити документ, що підтверджує оплату 
               {type === "єсв" ? " єдиного соціального внеску" : " єдиного податку"}.
