@@ -10,7 +10,7 @@ const Register = () => {
       <div className="md:w-1/3 p-6">
         <div className="text-center md:text-left mb-8">
           <h2 className="text-3xl font-extrabold text-gray-900">
-            Фінтех Адмін Хаб
+            Бухгалтерія Онлайн
           </h2>
           <p className="mt-2 text-lg text-gray-600">
             Сучасна система для управління фінансовими даними
