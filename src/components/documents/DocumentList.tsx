@@ -1,109 +1,110 @@
 
-import { File, FileCheck, Download } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { useState } from 'react';
+import React from 'react';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { formatDistanceToNow } from 'date-fns';
+import { uk } from 'date-fns/locale';
 
 type Document = {
   id: string;
-  name: string;
   type: string;
-  uploadDate: string;
-  status: 'pending' | 'verified';
-  fileUrl: string;
+  title: string;
+  url: string;
+  updatedAt: Date;
 };
 
-// Sample data for uploaded documents
-const uploadedDocuments: Document[] = [
+// Sample data for documents
+const documents: Document[] = [
   {
     id: '1',
-    name: 'Паспорт',
-    type: 'passport',
-    uploadDate: '2024-02-15',
-    status: 'verified',
-    fileUrl: '#'
+    type: 'Банківська виписка',
+    title: 'Виписка за березень 2024 року',
+    url: '#',
+    updatedAt: new Date('2024-03-15')
   },
   {
     id: '2',
-    name: 'ІПН',
-    type: 'ipn',
-    uploadDate: '2024-02-15',
-    status: 'verified',
-    fileUrl: '#'
+    type: 'Податкова',
+    title: 'Декларація ФОП за 1 квартал 2024',
+    url: '#',
+    updatedAt: new Date('2024-04-20')
   },
   {
     id: '3',
-    name: 'Свідоцтво про реєстрацію ФОП',
-    type: 'registration',
-    uploadDate: '2024-03-01',
-    status: 'pending',
-    fileUrl: '#'
+    type: 'Підтвердження оплати',
+    title: 'Квитанція про сплату ЄСВ',
+    url: '#',
+    updatedAt: new Date('2024-04-25')
   },
   {
     id: '4',
-    name: 'Довідка з пенсійного фонду',
-    type: 'other',
-    uploadDate: '2024-03-10',
-    status: 'pending',
-    fileUrl: '#'
+    type: 'Підтвердження оплати',
+    title: 'Квитанція про сплату єдиного податку',
+    url: '#',
+    updatedAt: new Date('2024-04-25')
+  },
+  {
+    id: '5',
+    type: 'Договір',
+    title: 'Договір про надання послуг',
+    url: '#',
+    updatedAt: new Date('2024-02-10')
+  },
+  {
+    id: '6',
+    type: 'Інше',
+    title: 'Довідка з пенсійного фонду',
+    url: '#',
+    updatedAt: new Date(Date.now() - 3600000) // 1 hour ago
   }
 ];
 
 export const DocumentList = () => {
-  const [documents] = useState<Document[]>(uploadedDocuments);
+  // Function to format date in a user-friendly way
+  const formatDate = (date: Date) => {
+    try {
+      return formatDistanceToNow(date, { addSuffix: true, locale: uk });
+    } catch (error) {
+      return 'Невідома дата';
+    }
+  };
 
   return (
-    <Card className="mt-6">
-      <CardContent className="p-6">
-        <h3 className="text-lg font-medium mb-4">Завантажені документи</h3>
-        
-        {documents.length === 0 ? (
-          <div className="text-center py-6 text-gray-500">
-            <p>У вас ще немає завантажених документів</p>
-          </div>
-        ) : (
-          <div className="space-y-4">
-            {documents.map((doc) => (
-              <div 
-                key={doc.id} 
-                className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-fintech-50 rounded-full">
-                    {doc.status === 'verified' ? (
-                      <FileCheck className="h-5 w-5 text-fintech-600" />
-                    ) : (
-                      <File className="h-5 w-5 text-fintech-600" />
-                    )}
-                  </div>
-                  <div>
-                    <p className="font-medium">{doc.name}</p>
-                    <p className="text-sm text-gray-500">
-                      {new Date(doc.uploadDate).toLocaleDateString('uk-UA')}
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-2">
-                  <span 
-                    className={`px-2.5 py-0.5 rounded-full text-sm font-medium ${
-                      doc.status === 'verified' 
-                        ? 'bg-green-100 text-green-800' 
-                        : 'bg-yellow-100 text-yellow-800'
-                    }`}
+    <div className="rounded-lg border shadow-sm bg-white overflow-hidden">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[200px]">Тип</TableHead>
+            <TableHead>Заголовок</TableHead>
+            <TableHead className="w-[200px] text-right">Востаннє оновлено</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {documents.length > 0 ? (
+            documents.map((doc) => (
+              <TableRow key={doc.id}>
+                <TableCell className="font-medium">{doc.type}</TableCell>
+                <TableCell>
+                  <a 
+                    href={doc.url} 
+                    className="text-blue-600 hover:text-blue-800 hover:underline"
+                    target="_blank" 
+                    rel="noopener noreferrer"
                   >
-                    {doc.status === 'verified' ? 'Перевірено' : 'Очікує перевірки'}
-                  </span>
-                  
-                  <Button variant="ghost" size="icon" title="Завантажити">
-                    <Download className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </CardContent>
-    </Card>
+                    {doc.title}
+                  </a>
+                </TableCell>
+                <TableCell className="text-right">{formatDate(doc.updatedAt)}</TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={3} className="h-24 text-center">
+                У вас ще немає документів
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+    </div>
   );
 };
