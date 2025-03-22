@@ -16,52 +16,52 @@ type Document = {
   updatedAt: Date;
 };
 
-// Sample data for documents
+// Sample data for documents - updated with ФОП relevant documents
 const documents: Document[] = [
   {
     id: '1',
-    type: 'Банківська виписка',
-    title: 'Виписка за березень 2024 року',
+    type: 'Паспорт',
+    title: 'Паспорт громадянина України',
     url: '#',
     status: 'approved',
     updatedAt: new Date('2024-03-15')
   },
   {
     id: '2',
-    type: 'Податкова',
-    title: 'Декларація ФОП за 1 квартал 2024',
+    type: 'ІПН',
+    title: 'Ідентифікаційний податковий номер',
     url: '#',
-    status: 'pending',
-    updatedAt: new Date('2024-04-20')
+    status: 'approved',
+    updatedAt: new Date('2024-03-20')
   },
   {
     id: '3',
-    type: 'Підтвердження оплати',
-    title: 'Квитанція про сплату ЄСВ',
+    type: 'Свідоцтво ФОП',
+    title: 'Виписка з ЄДР про реєстрацію ФОП',
     url: '#',
-    status: 'rejected',
-    updatedAt: new Date('2024-04-25')
+    status: 'approved',
+    updatedAt: new Date('2024-04-10')
   },
   {
     id: '4',
-    type: 'Підтвердження оплати',
-    title: 'Квитанція про сплату єдиного податку',
+    type: 'Податкова',
+    title: 'Свідоцтво про сплату єдиного податку',
     url: '#',
     status: 'approved',
-    updatedAt: new Date('2024-04-25')
+    updatedAt: new Date('2024-04-15')
   },
   {
     id: '5',
-    type: 'Договір',
-    title: 'Договір про надання послуг',
+    type: 'Банківські реквізити',
+    title: 'Довідка про відкриття рахунку',
     url: '#',
     status: 'pending',
-    updatedAt: new Date('2024-02-10')
+    updatedAt: new Date('2024-04-25')
   },
   {
     id: '6',
-    type: 'Інше',
-    title: 'Довідка з пенсійного фонду',
+    type: 'ЄСВ',
+    title: 'Квитанція про сплату ЄСВ за 1 квартал 2024',
     url: '#',
     status: 'pending',
     updatedAt: new Date(Date.now() - 3600000) // 1 hour ago

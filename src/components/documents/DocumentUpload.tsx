@@ -17,7 +17,11 @@ import { Upload } from 'lucide-react';
 const documentTypes = [
   { id: 'passport', label: 'Паспорт' },
   { id: 'ipn', label: 'ІПН' },
-  { id: 'registration', label: 'Свідоцтво про реєстрацію' },
+  { id: 'fop_certificate', label: 'Свідоцтво ФОП' },
+  { id: 'tax_certificate', label: 'Довідка про сплату податків' },
+  { id: 'bank_details', label: 'Банківські реквізити' },
+  { id: 'esv_payment', label: 'Квитанція ЄСВ' },
+  { id: 'rental_agreement', label: 'Договір оренди' },
   { id: 'other', label: 'Інший документ' },
 ];
 
