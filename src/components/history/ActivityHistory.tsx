@@ -8,129 +8,107 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-import { FileCheck, Receipt, FileText, Upload } from 'lucide-react';
+import { formatDistanceToNow } from 'date-fns';
+import { uk } from 'date-fns/locale';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 
 type Activity = {
   id: string;
-  type: 'document' | 'payment' | 'contract' | 'upload';
-  description: string;
-  date: string;
-  amount?: number;
-  status: 'completed' | 'pending' | 'cancelled';
+  type: string;
+  title: string;
+  url: string;
+  date: Date;
 };
 
+// Sample data for history activities
 const activities: Activity[] = [
   {
     id: '1',
-    type: 'upload',
-    description: 'Завантажено паспорт',
-    date: '2024-03-18',
-    status: 'completed'
+    type: 'Договір',
+    title: 'Підписано договір про надання послуг',
+    url: '#',
+    date: new Date('2024-03-10')
   },
   {
     id: '2',
-    type: 'payment',
-    description: 'Оплата послуг',
-    date: '2024-03-15',
-    amount: 1500,
-    status: 'completed'
+    type: 'Платіж',
+    title: 'Оплата послуг',
+    url: '#',
+    date: new Date('2024-03-15')
   },
   {
     id: '3',
-    type: 'contract',
-    description: 'Підписано договір про надання послуг',
-    date: '2024-03-10',
-    status: 'completed'
+    type: 'Документ',
+    title: 'Завантажено паспорт',
+    url: '#',
+    date: new Date('2024-03-18')
   },
   {
     id: '4',
-    type: 'document',
-    description: 'Завантажено ІПН',
-    date: '2024-03-05',
-    status: 'completed'
+    type: 'Документ',
+    title: 'Завантажено ІПН',
+    url: '#',
+    date: new Date('2024-03-05')
   },
   {
     id: '5',
-    type: 'payment',
-    description: 'Оплата податків',
-    date: '2024-02-28',
-    amount: 2200,
-    status: 'completed'
+    type: 'Платіж',
+    title: 'Оплата податків',
+    url: '#',
+    date: new Date('2024-02-28')
   },
   {
     id: '6',
-    type: 'upload',
-    description: 'Завантажено виписку з банку',
-    date: '2024-02-20',
-    status: 'completed'
+    type: 'Документ',
+    title: 'Завантажено виписку з банку',
+    url: '#',
+    date: new Date('2024-02-20')
   },
   {
     id: '7',
-    type: 'contract',
-    description: 'Підписано додаткову угоду',
-    date: '2024-02-15',
-    status: 'pending'
+    type: 'Договір',
+    title: 'Підписано додаткову угоду',
+    url: '#',
+    date: new Date('2024-02-15')
   }
 ];
 
-const getIcon = (type: Activity['type']) => {
-  switch (type) {
-    case 'document':
-      return <FileCheck className="h-5 w-5 text-blue-500" />;
-    case 'payment':
-      return <Receipt className="h-5 w-5 text-green-500" />;
-    case 'contract':
-      return <FileText className="h-5 w-5 text-purple-500" />;
-    case 'upload':
-      return <Upload className="h-5 w-5 text-orange-500" />;
-  }
-};
-
-const getStatusBadge = (status: Activity['status']) => {
-  switch (status) {
-    case 'completed':
-      return <Badge variant="default" className="bg-green-500">Виконано</Badge>;
-    case 'pending':
-      return <Badge variant="secondary" className="bg-yellow-500 text-white">В обробці</Badge>;
-    case 'cancelled':
-      return <Badge variant="destructive">Скасовано</Badge>;
-  }
-};
-
 export const ActivityHistory = () => {
+  // Function to format date in a user-friendly way
+  const formatDate = (date: Date) => {
+    try {
+      return formatDistanceToNow(date, { addSuffix: true, locale: uk });
+    } catch (error) {
+      return 'Невідома дата';
+    }
+  };
+
   return (
     <div className="space-y-4">
       <div className="rounded-md border">
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Тип операції</TableHead>
-              <TableHead>Дата</TableHead>
-              <TableHead>Опис</TableHead>
-              <TableHead className="text-right">Сума</TableHead>
-              <TableHead>Статус</TableHead>
+              <TableHead className="w-[200px]">Тип</TableHead>
+              <TableHead>Заголовок</TableHead>
+              <TableHead className="w-[200px] text-right">Востаннє оновлено</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {activities.map((activity) => (
               <TableRow key={activity.id}>
+                <TableCell className="font-medium">{activity.type}</TableCell>
                 <TableCell>
-                  <div className="flex items-center gap-2">
-                    <div className="p-1 bg-gray-100 rounded-full">
-                      {getIcon(activity.type)}
-                    </div>
-                  </div>
+                  <a 
+                    href={activity.url} 
+                    className="text-blue-600 hover:text-blue-800 hover:underline"
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    {activity.title}
+                  </a>
                 </TableCell>
-                <TableCell>{new Date(activity.date).toLocaleDateString('uk-UA')}</TableCell>
-                <TableCell>{activity.description}</TableCell>
-                <TableCell className="text-right">
-                  {activity.amount ? `${activity.amount.toFixed(2)} ₴` : '-'}
-                </TableCell>
-                <TableCell>
-                  {getStatusBadge(activity.status)}
-                </TableCell>
+                <TableCell className="text-right">{formatDate(activity.date)}</TableCell>
               </TableRow>
             ))}
           </TableBody>
