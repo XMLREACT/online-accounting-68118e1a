@@ -3,12 +3,16 @@ import React from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { formatDistanceToNow } from 'date-fns';
 import { uk } from 'date-fns/locale';
+import { CheckCircle, XCircle, Clock } from 'lucide-react';
+
+type DocumentStatus = 'approved' | 'rejected' | 'pending';
 
 type Document = {
   id: string;
   type: string;
   title: string;
   url: string;
+  status: DocumentStatus;
   updatedAt: Date;
 };
 
@@ -19,6 +23,7 @@ const documents: Document[] = [
     type: 'Банківська виписка',
     title: 'Виписка за березень 2024 року',
     url: '#',
+    status: 'approved',
     updatedAt: new Date('2024-03-15')
   },
   {
@@ -26,6 +31,7 @@ const documents: Document[] = [
     type: 'Податкова',
     title: 'Декларація ФОП за 1 квартал 2024',
     url: '#',
+    status: 'pending',
     updatedAt: new Date('2024-04-20')
   },
   {
@@ -33,6 +39,7 @@ const documents: Document[] = [
     type: 'Підтвердження оплати',
     title: 'Квитанція про сплату ЄСВ',
     url: '#',
+    status: 'rejected',
     updatedAt: new Date('2024-04-25')
   },
   {
@@ -40,6 +47,7 @@ const documents: Document[] = [
     type: 'Підтвердження оплати',
     title: 'Квитанція про сплату єдиного податку',
     url: '#',
+    status: 'approved',
     updatedAt: new Date('2024-04-25')
   },
   {
@@ -47,6 +55,7 @@ const documents: Document[] = [
     type: 'Договір',
     title: 'Договір про надання послуг',
     url: '#',
+    status: 'pending',
     updatedAt: new Date('2024-02-10')
   },
   {
@@ -54,9 +63,32 @@ const documents: Document[] = [
     type: 'Інше',
     title: 'Довідка з пенсійного фонду',
     url: '#',
+    status: 'pending',
     updatedAt: new Date(Date.now() - 3600000) // 1 hour ago
   }
 ];
+
+const getStatusIcon = (status: DocumentStatus) => {
+  switch (status) {
+    case 'approved':
+      return <CheckCircle className="h-5 w-5 text-green-500" />;
+    case 'rejected':
+      return <XCircle className="h-5 w-5 text-red-500" />;
+    case 'pending':
+      return <Clock className="h-5 w-5 text-amber-500" />;
+  }
+};
+
+const getStatusText = (status: DocumentStatus) => {
+  switch (status) {
+    case 'approved':
+      return 'Прийнятий';
+    case 'rejected':
+      return 'Не прийнятий';
+    case 'pending':
+      return 'На перевірці';
+  }
+};
 
 export const DocumentList = () => {
   // Function to format date in a user-friendly way
@@ -73,9 +105,9 @@ export const DocumentList = () => {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[200px]">Тип</TableHead>
-            <TableHead>Заголовок</TableHead>
-            <TableHead className="w-[200px] text-right">Востаннє оновлено</TableHead>
+            <TableHead className="w-[200px]">Тип документа</TableHead>
+            <TableHead>Назва документа</TableHead>
+            <TableHead className="w-[150px] text-center">Статус</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -93,7 +125,12 @@ export const DocumentList = () => {
                     {doc.title}
                   </a>
                 </TableCell>
-                <TableCell className="text-right">{formatDate(doc.updatedAt)}</TableCell>
+                <TableCell className="text-center">
+                  <div className="flex items-center justify-center gap-2">
+                    {getStatusIcon(doc.status)}
+                    <span>{getStatusText(doc.status)}</span>
+                  </div>
+                </TableCell>
               </TableRow>
             ))
           ) : (
