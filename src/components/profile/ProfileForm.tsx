@@ -70,20 +70,20 @@ const ProfileForm = () => {
   };
 
   return (
-    <div className="w-full bg-white rounded-lg shadow-sm p-6">
+    <div className="w-full bg-white rounded-lg shadow-sm p-4">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <div className="mb-6">
-            <h2 className="text-xl font-medium mb-4">Основна інформація</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <div className="mb-4">
+            <h2 className="text-lg font-medium mb-3">Основна інформація</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <FormField
                 control={form.control}
                 name="lastName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Прізвище *</FormLabel>
+                    <FormLabel className="text-sm">Прізвище *</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="Введіть прізвище" required />
+                      <Input {...field} placeholder="Введіть прізвище" required className="h-9" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -95,9 +95,9 @@ const ProfileForm = () => {
                 name="firstName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Ім'я *</FormLabel>
+                    <FormLabel className="text-sm">Ім'я *</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="Введіть ім'я" required />
+                      <Input {...field} placeholder="Введіть ім'я" required className="h-9" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -109,9 +109,9 @@ const ProfileForm = () => {
                 name="middleName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>По батькові *</FormLabel>
+                    <FormLabel className="text-sm">По батькові *</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="Введіть по батькові" required />
+                      <Input {...field} placeholder="Введіть по батькові" required className="h-9" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -123,9 +123,9 @@ const ProfileForm = () => {
                 name="rnokpp"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>РНОКПП</FormLabel>
+                    <FormLabel className="text-sm">РНОКПП</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="Введіть РНОКПП" />
+                      <Input {...field} placeholder="Введіть РНОКПП" className="h-9" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -133,7 +133,7 @@ const ProfileForm = () => {
               />
 
               <div className="col-span-1 md:col-span-2">
-                <FormLabel className="block mb-2">Дата народження *</FormLabel>
+                <FormLabel className="block mb-1 text-sm">Дата народження *</FormLabel>
                 <div className="grid grid-cols-3 gap-2">
                   <FormField
                     control={form.control}
@@ -141,7 +141,7 @@ const ProfileForm = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Input {...field} placeholder="Число" required />
+                          <Input {...field} placeholder="Число" required className="h-9" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -153,7 +153,7 @@ const ProfileForm = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Input {...field} placeholder="Місяць" required />
+                          <Input {...field} placeholder="Місяць" required className="h-9" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -165,7 +165,7 @@ const ProfileForm = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Input {...field} placeholder="Рік" required />
+                          <Input {...field} placeholder="Рік" required className="h-9" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -178,21 +178,21 @@ const ProfileForm = () => {
                 control={form.control}
                 name="isRegisteredAsFop"
                 render={({ field }) => (
-                  <FormItem className="col-span-1 md:col-span-2">
-                    <FormLabel>Чи зареєстровані ви як ФОП? *</FormLabel>
+                  <FormItem>
+                    <FormLabel className="text-sm">Чи зареєстровані ви як ФОП? *</FormLabel>
                     <FormControl>
                       <RadioGroup
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                         className="flex flex-row gap-4"
                       >
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-1">
                           <RadioGroupItem value="yes" id="fop-yes" />
-                          <label htmlFor="fop-yes">Так</label>
+                          <label htmlFor="fop-yes" className="text-sm">Так</label>
                         </div>
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-1">
                           <RadioGroupItem value="no" id="fop-no" />
-                          <label htmlFor="fop-no">Ні</label>
+                          <label htmlFor="fop-no" className="text-sm">Ні</label>
                         </div>
                       </RadioGroup>
                     </FormControl>
@@ -206,9 +206,9 @@ const ProfileForm = () => {
                 name="registrationAddress"
                 render={({ field }) => (
                   <FormItem className="col-span-1 md:col-span-3">
-                    <FormLabel>Адреса реєстрації</FormLabel>
+                    <FormLabel className="text-sm">Адреса реєстрації</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="Введіть адресу реєстрації" />
+                      <Input {...field} placeholder="Введіть адресу реєстрації" className="h-9" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -220,9 +220,9 @@ const ProfileForm = () => {
                 name="passport"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Паспорт</FormLabel>
+                    <FormLabel className="text-sm">Паспорт</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="Серія та номер паспорта" />
+                      <Input {...field} placeholder="Серія та номер" className="h-9" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -234,9 +234,9 @@ const ProfileForm = () => {
                 name="passportIssueDate"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Коли виданий *</FormLabel>
+                    <FormLabel className="text-sm">Коли виданий *</FormLabel>
                     <FormControl>
-                      <Input {...field} type="date" required />
+                      <Input {...field} type="date" required className="h-9" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -245,17 +245,17 @@ const ProfileForm = () => {
             </div>
           </div>
 
-          <div className="mb-6">
-            <h2 className="text-xl font-medium mb-4">Додаткові поля</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="mb-4">
+            <h2 className="text-lg font-medium mb-3">Додаткові поля</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <FormField
                 control={form.control}
                 name="skype"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Skype</FormLabel>
+                    <FormLabel className="text-sm">Skype</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="Введіть Skype логін" />
+                      <Input {...field} placeholder="Skype логін" className="h-9" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -267,9 +267,9 @@ const ProfileForm = () => {
                 name="viber"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Viber-номер телефону</FormLabel>
+                    <FormLabel className="text-sm">Viber</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="Введіть Viber номер" />
+                      <Input {...field} placeholder="Номер телефону" className="h-9" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -281,9 +281,9 @@ const ProfileForm = () => {
                 name="whatsapp"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>WhatsApp-номер телефону</FormLabel>
+                    <FormLabel className="text-sm">WhatsApp</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="Введіть WhatsApp номер" />
+                      <Input {...field} placeholder="Номер телефону" className="h-9" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -295,20 +295,20 @@ const ProfileForm = () => {
                 name="hasDigitalSignature"
                 render={({ field }) => (
                   <FormItem className="col-span-1 md:col-span-3">
-                    <FormLabel>Наявність ЕЦП</FormLabel>
+                    <FormLabel className="text-sm">Наявність ЕЦП</FormLabel>
                     <FormControl>
                       <RadioGroup
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                         className="flex flex-row gap-4"
                       >
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-1">
                           <RadioGroupItem value="yes" id="ecp-yes" />
-                          <label htmlFor="ecp-yes">Так</label>
+                          <label htmlFor="ecp-yes" className="text-sm">Так</label>
                         </div>
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-1">
                           <RadioGroupItem value="no" id="ecp-no" />
-                          <label htmlFor="ecp-no">Ні</label>
+                          <label htmlFor="ecp-no" className="text-sm">Ні</label>
                         </div>
                       </RadioGroup>
                     </FormControl>
@@ -318,15 +318,15 @@ const ProfileForm = () => {
               />
 
               {form.watch("hasDigitalSignature") === "yes" && (
-                <>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 col-span-1 md:col-span-3">
                   <FormField
                     control={form.control}
                     name="digitalSignatureIssuer"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Ким виданий ЕЦП</FormLabel>
+                        <FormLabel className="text-sm">Ким виданий ЕЦП</FormLabel>
                         <FormControl>
-                          <Input {...field} placeholder="Введіть установу" />
+                          <Input {...field} placeholder="Введіть установу" className="h-9" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -338,9 +338,9 @@ const ProfileForm = () => {
                     name="digitalSignatureIssueDate"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Коли виданий ЕЦП</FormLabel>
+                        <FormLabel className="text-sm">Коли виданий ЕЦП</FormLabel>
                         <FormControl>
-                          <Input {...field} type="date" />
+                          <Input {...field} type="date" className="h-9" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -352,15 +352,15 @@ const ProfileForm = () => {
                     name="digitalSignatureExpiryDate"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Строк дії ЕЦП</FormLabel>
+                        <FormLabel className="text-sm">Строк дії ЕЦП</FormLabel>
                         <FormControl>
-                          <Input {...field} type="date" />
+                          <Input {...field} type="date" className="h-9" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                </>
+                </div>
               )}
 
               <FormField
@@ -368,12 +368,12 @@ const ProfileForm = () => {
                 name="comments"
                 render={({ field }) => (
                   <FormItem className="col-span-1 md:col-span-3">
-                    <FormLabel>Коментар</FormLabel>
+                    <FormLabel className="text-sm">Коментар</FormLabel>
                     <FormControl>
                       <Textarea 
                         {...field} 
                         placeholder="Введіть додаткові коментарі" 
-                        className="min-h-[120px]"
+                        className="min-h-[80px] resize-none"
                       />
                     </FormControl>
                     <FormMessage />
@@ -383,8 +383,8 @@ const ProfileForm = () => {
             </div>
           </div>
 
-          <div className="flex justify-end mt-6">
-            <Button type="submit" size="lg">
+          <div className="flex justify-end mt-4">
+            <Button type="submit" size="sm">
               <Save className="mr-2 h-4 w-4" />
               Зберегти зміни
             </Button>

@@ -6,8 +6,8 @@ import { ProfileForm } from '@/components/profile/ProfileForm';
 const Profile = () => {
   return (
     <DashboardLayout>
-      <div className="space-y-4">
-        <h1 className="text-2xl font-bold">Профіль</h1>
+      <div className="space-y-3">
+        <h1 className="text-xl font-bold">Профіль</h1>
         <div className="w-full">
           <ProfileForm />
         </div>
