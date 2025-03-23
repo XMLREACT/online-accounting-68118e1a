@@ -17,6 +17,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import LandingPage from "./pages/LandingPage";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminDocumentView from "./pages/admin/AdminDocumentView";
 
 const queryClient = new QueryClient();
 
@@ -58,7 +59,7 @@ const App = () => (
             <Route path="/admin/single-tax-payments" element={<AdminDashboard />} />
             <Route path="/admin/verification-act" element={<AdminDashboard />} />
             <Route path="/admin/mailing" element={<AdminDashboard />} />
-            <Route path="/admin/document/:id" element={<AdminDashboard />} />
+            <Route path="/admin/document/:id" element={<AdminDocumentView />} />
             
             <Route path="*" element={<NotFound />} />
           </Routes>
