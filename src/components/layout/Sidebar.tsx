@@ -10,7 +10,8 @@ import {
   User, 
   LogOut, 
   KeyRound,
-  UserPlus
+  UserPlus,
+  Users
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -90,6 +91,14 @@ const Sidebar = () => {
           <Link to="/register" className="flex items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700/50 transition-colors">
             <UserPlus className="w-5 h-5 mr-3" />
             <span>Реєстрація</span>
+          </Link>
+          <Link to="/choose" className="flex items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700/50 transition-colors mt-2">
+            <Users className="w-5 h-5 mr-3" />
+            <span>Панель вибору</span>
+          </Link>
+          <Link to="/admin" className="flex items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700/50 transition-colors">
+            <Users className="w-5 h-5 mr-3" />
+            <span>Адмін панель</span>
           </Link>
         </div>
       </div>

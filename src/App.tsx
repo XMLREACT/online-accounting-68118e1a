@@ -15,6 +15,8 @@ import History from "./pages/History";
 import Messages from "./pages/Messages";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import LandingPage from "./pages/LandingPage";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +28,9 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
+            <Route path="/choose" element={<LandingPage />} />
+            
+            {/* User routes */}
             <Route path="/" element={<Index />} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/statement" element={<BankStatement />} />
@@ -35,6 +40,26 @@ const App = () => (
             <Route path="/history" element={<History />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            
+            {/* Admin routes */}
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/users" element={<AdminDashboard />} />
+            <Route path="/admin/client-card" element={<AdminDashboard />} />
+            <Route path="/admin/client-card/:id" element={<AdminDashboard />} />
+            <Route path="/admin/delete-fop" element={<AdminDashboard />} />
+            <Route path="/admin/bank-statements" element={<AdminDashboard />} />
+            <Route path="/admin/esv-payments" element={<AdminDashboard />} />
+            <Route path="/admin/esv-requisites" element={<AdminDashboard />} />
+            <Route path="/admin/esv-receipt" element={<AdminDashboard />} />
+            <Route path="/admin/single-tax" element={<AdminDashboard />} />
+            <Route path="/admin/single-tax-receipt" element={<AdminDashboard />} />
+            <Route path="/admin/single-tax-import" element={<AdminDashboard />} />
+            <Route path="/admin/single-tax-requisites" element={<AdminDashboard />} />
+            <Route path="/admin/single-tax-payments" element={<AdminDashboard />} />
+            <Route path="/admin/verification-act" element={<AdminDashboard />} />
+            <Route path="/admin/mailing" element={<AdminDashboard />} />
+            <Route path="/admin/document/:id" element={<AdminDashboard />} />
+            
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
