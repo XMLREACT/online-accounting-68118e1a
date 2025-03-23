@@ -23,7 +23,7 @@ const Sidebar = () => {
 
   return (
     <div className="h-screen w-64 fixed left-0 top-0 z-30 bg-[#404040] border-r border-gray-500 flex flex-col shadow-sm">
-      <div className="text-xl font-bold px-4 py-6 text-white border-b border-gray-500">
+      <div className="text-2xl font-bold px-4 py-6 text-white border-b border-gray-500">
         Бухгалтерія Онлайн
       </div>
       
@@ -83,11 +83,11 @@ const Sidebar = () => {
           className="text-red-400 hover:text-red-300 hover:bg-red-900/30"
         />
         <div className="flex flex-col mt-4 space-y-2">
-          <Link to="/login" className="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700/50 transition-colors">
+          <Link to="/login" className="flex items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700/50 transition-colors">
             <KeyRound className="w-5 h-5 mr-3" />
             <span>Вхід</span>
           </Link>
-          <Link to="/register" className="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700/50 transition-colors">
+          <Link to="/register" className="flex items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700/50 transition-colors">
             <UserPlus className="w-5 h-5 mr-3" />
             <span>Реєстрація</span>
           </Link>
@@ -110,7 +110,7 @@ const SidebarLink = ({ to, icon, label, isActive, className }: SidebarLinkProps)
     <Link
       to={to}
       className={cn(
-        "flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors",
+        "flex items-center px-3 py-2 rounded-md text-base font-medium transition-colors",
         isActive
           ? "bg-gray-600 text-white"
           : "text-gray-300 hover:text-white hover:bg-gray-500/60",

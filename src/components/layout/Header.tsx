@@ -12,7 +12,7 @@ export const Header = () => {
   return (
     <header className="w-full px-6 py-4 bg-gray-100 shadow-sm">
       <div className="flex justify-between items-center">
-        <div className="text-lg font-medium">Особистий кабінет</div>
+        <div className="text-xl font-bold">Особистий кабінет</div>
         <div className="flex items-center gap-4">
           <Popover>
             <PopoverTrigger asChild>
@@ -25,7 +25,7 @@ export const Header = () => {
             </PopoverTrigger>
             <PopoverContent className="w-80 p-0">
               <div className="p-4">
-                <h4 className="font-medium mb-2">Сповіщення</h4>
+                <h4 className="font-medium mb-2 text-lg">Сповіщення</h4>
                 <div className="space-y-2">
                   <NotificationItem
                     message="Новий документ очікує підпису"
@@ -43,7 +43,7 @@ export const Header = () => {
               </div>
             </PopoverContent>
           </Popover>
-          <span className="text-sm font-medium">admin@fintech.com</span>
+          <span className="text-base font-medium">admin@fintech.com</span>
         </div>
       </div>
     </header>
@@ -58,7 +58,11 @@ const NotificationItem = ({
   time: string;
 }) => (
   <div className="p-3 hover:bg-fintech-50 rounded-lg transition-colors">
-    <p className="text-sm">{message}</p>
-    <span className="text-xs text-muted-foreground">{time}</span>
+    <p className="text-base">
+      {message}
+    </p>
+    <span className="text-sm text-muted-foreground">
+      {time}
+    </span>
   </div>
 );
