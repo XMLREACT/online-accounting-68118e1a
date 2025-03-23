@@ -22,8 +22,8 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="h-screen w-64 fixed left-0 top-0 z-30 bg-[#2A2A2A] border-r border-gray-700 flex flex-col shadow-sm">
-      <div className="text-xl font-bold px-4 py-6 text-white border-b border-gray-700">
+    <div className="h-screen w-64 fixed left-0 top-0 z-30 bg-[#404040] border-r border-gray-500 flex flex-col shadow-sm">
+      <div className="text-xl font-bold px-4 py-6 text-white border-b border-gray-500">
         Бухгалтерія Онлайн
       </div>
       
@@ -74,7 +74,7 @@ const Sidebar = () => {
         </div>
       </nav>
       
-      <div className="p-4 border-t border-gray-700">
+      <div className="p-4 border-t border-gray-500">
         <SidebarLink 
           to="#" 
           icon={<LogOut className="w-5 h-5" />} 
@@ -112,8 +112,8 @@ const SidebarLink = ({ to, icon, label, isActive, className }: SidebarLinkProps)
       className={cn(
         "flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors",
         isActive
-          ? "bg-gray-700/70 text-white"
-          : "text-gray-300 hover:text-white hover:bg-gray-700/50",
+          ? "bg-gray-600 text-white"
+          : "text-gray-300 hover:text-white hover:bg-gray-500/60",
         className
       )}
     >

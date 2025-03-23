@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 
 export const Header = () => {
   return (
-    <header className="w-full px-6 py-4 glass-panel">
+    <header className="w-full px-6 py-4 bg-gray-100 shadow-sm">
       <div className="flex justify-between items-center">
         <div className="text-lg font-medium">Особистий кабінет</div>
         <div className="flex items-center gap-4">
